@@ -37,6 +37,13 @@ app.get('/read/usernames', (req, res) => {
   res.send(usernames);
 });
 
+app.get('/read/usernames/:name', (req, res) => {
+  let usernames = req.users.map(function(user) {
+    return {id: user.id, username: user.username};
+  });
+  res.send(usernames);
+});
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use('/write/adduser', addMsgToRequest);
